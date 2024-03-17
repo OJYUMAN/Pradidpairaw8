@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:untitled1/UiFunc.dart';
+import 'FirebaseAction.dart';
 import 'variable.dart';
 import 'PlaySound.dart';
 
@@ -47,53 +49,56 @@ keyboard(a) {
                           onTap: () {
                             switch (i) {
                               case 0:
-                                G0 = true;
+                                io = "ซฺ";
                                 break;
                               case 1:
-                                A0 = true;
+                                io = "ลฺ";
                                 break;
                               case 2:
-                                B0 = true;
+                                io = "ทฺ";
                                 break;
                               case 3:
-                                C = true;
+                                io = "ด";
                                 break;
                               case 4:
-                                D = true;
+                                io = "ร";
                                 break;
                               case 5:
-                                E = true;
+                                io = "ม";
                                 break;
                               case 6:
-                                F = true;
+                                io = "ฟ";
                                 break;
                               case 7:
-                                G = true;
+                                io = "ซ";
                                 break;
                               case 8:
-                                A = true;
+                                io = "ล";
                                 break;
                               case 9:
-                                B = true;
+                                io = "ท";
                                 break;
                               case 10:
-                                C1 = true;
+                                io = "ดํ";
                                 break;
                               case 11:
-                                D1 = true;
+                                io = "รํ";
                                 break;
                               case 12:
-                                E1 = true;
+                                io = "มํ";
                                 break;
                               case 13:
-                                F1 = true;
+                                io = "ฟํ";
                                 break;
                               case 14:
-                                G1 = true;
+                                io = "ซํ";
                                 break;
                               default:
                               // Code to execute when i doesn't match any case
                             }
+                            labelarr[ppcount.toInt()] = io;
+                            refreshui();
+
                             // setState(() {
                             //   if (JK == true) {
                             //     edit();

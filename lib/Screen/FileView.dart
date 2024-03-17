@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'CreateProject.dart';
 import 'ProjectView.dart';
 import '../SignWithGoogle.dart';
 import 'package:intl/intl.dart';
@@ -27,7 +28,7 @@ class _HomePageState extends State<HomePage2> {
         title: Text(
           "Recent projects",
           style: TextStyle(
-            color: Colors.purple,
+            color: Color.fromARGB(255, 169, 143, 127),
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -36,21 +37,10 @@ class _HomePageState extends State<HomePage2> {
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.purple,
+                  backgroundColor: Color.fromARGB(255, 169, 143, 127),
                 ),
                 onPressed: () {
-                  print("check");
-                  newproject();
-                  Navigator.of(context)
-                      .push(
-                    MaterialPageRoute(
-                      builder: (context) => MyApp(),
-                    ),
-                  )
-                      .then((value) {
-                    print("Calling Set  State !");
-                    setState(() {});
-                  });
+                  createproject(context);
                 },
                 child: Text('Create new project')),
           ),
@@ -129,7 +119,7 @@ class _HomePageState extends State<HomePage2> {
                           Text(
                             "${data['title']}",
                             style: TextStyle(
-                              fontSize: 24.0,
+                              fontSize: 20.0,
                               fontFamily: "lato",
                               fontWeight: FontWeight.bold,
                               color: Colors.black87,
@@ -140,7 +130,7 @@ class _HomePageState extends State<HomePage2> {
                             child: Text(
                               formattedTime,
                               style: TextStyle(
-                                fontSize: 20.0,
+                                fontSize: 10,
                                 fontFamily: "lato",
                                 color: Colors.black87,
                               ),

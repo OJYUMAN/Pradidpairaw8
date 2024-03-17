@@ -10,7 +10,6 @@ List<String> strings = [];
 var myController = TextEditingController();
 var elements = <String>{};
 const List<Widget> vegetables = <Widget>[
-  Icon(Icons.stop_rounded),
   Icon(Icons.play_arrow_rounded),
   Icon(Icons.skip_previous_rounded),
 ];
@@ -60,10 +59,10 @@ var zz = 0.00;
 var ppcount = 0.00; //ตําแหน่งของเหลือง
 var table = 0;
 int Tempo = 60;
-bool hay = false;
+bool play = false;
 Stopwatch _stopwatch = Stopwatch();
 //late Timer _timer;
-Color ppcolor = Colors.yellow;
+Color ppcolor = Color.fromRGBO(255, 235, 59, 90);
 Color cccolor = Colors.black;
 Color cccolor2 = Colors.black;
 var filePath = "";
@@ -91,24 +90,24 @@ double top = 0.0;
 double left = 0.0;
 
 final List<String> allNotes = [
-  'E0.wav',
-  'F0.wav',
-  'G0.wav',
-  'A0.wav',
-  'B0.wav',
-  'C.wav',
-  'D.wav',
-  'E.wav',
-  'F.wav',
-  'G.wav',
-  'A.wav',
-  'B.wav',
-  'C2.wav',
-  'D2.wav',
-  'E2.wav',
-  'F2.wav',
-  'G3.wav',
-  "Output 1-2.wav",
+  'E0.mp3',
+  'F0.mp3',
+  'G0.mp3',
+  'A0.mp3',
+  'B0.mp3',
+  'C.mp3',
+  'D.mp3',
+  'E.mp3',
+  'F.mp3',
+  'Ghh.mp3',
+  'A.mp3',
+  'B.mp3',
+  'C2.mp3',
+  'D2.mp3',
+  'E2.mp3',
+  'F2.mp3',
+  'G3.mp3',
+  "Output 1-2.mp3",
 ];
 
 final List<String> allNoteshro = [
@@ -170,3 +169,14 @@ final List<String> ekNotes = [
       'F2.mp3',
       'G3.mp3',
 ];
+List<bool> isSelected = [true, false];
+
+bool isYellow = true;
+
+List<Color> buttonColors = List.generate(
+    1000000,
+        (index) =>
+        Color.fromRGBO(255, 228, 103, 0.0));
+
+
+final List<bool> selectedVegetables = <bool>[false, false];

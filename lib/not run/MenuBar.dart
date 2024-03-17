@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:menu_bar/menu_bar.dart';
+import 'package:untitled1/Screen/FileView.dart';
 
-List<BarButton> menuBarButtons() {
+import '../FirebaseAction.dart';
+
+List<BarButton> menuBarButtons(BuildContext context) {
   return [
     BarButton(
       text: const Text(
@@ -12,68 +15,96 @@ List<BarButton> menuBarButtons() {
         menuItems: [
           MenuButton(
             onTap: () async {
+              Navigator.of(context)
+                  .push(
+                MaterialPageRoute(
+                  builder: (context) => HomePage2(),
+                ),
+              )
+                  .then((value) {
+              });
+            },
+            text: const Text('Home'),
+            icon: const Icon(Icons.home),
+          ),
+          const MenuDivider(),
+          MenuButton(
+            onTap: () async {
+
+              Map<String, dynamic> data = {
+                'title': title,
+                'instrument': instrument,
+                'composer': composer,
+                'labelarr': labelarr,
+                'kroarr': kroarr,
+                'created': DateTime.now(),
+                // Add other fields as needed
+              };
+              saveproject(referenceinfo, data);
             },
             text: const Text('Save'),
-            shortcutText: 'Cmd+S',
+            icon: const Icon(Icons.cloud_done_outlined),
+            //shortcutText: 'Cmd+S',
             //shortcutText: 'Ctrl+S',
            // shortcut:
             //const SingleActivator(LogicalKeyboardKey.keyS, control: true),
           ),
-          MenuButton(
-            onTap: () async {
-             // saveas();
-            },
-            text: const Text('Save as'),
-            shortcutText: 'Cmd+Shift+S',
-          ),
-          const MenuDivider(),
-          MenuButton(
-            text: const Text('New Project'),
-            submenu: SubMenu(
-              menuItems: [
-                MenuButton(
-                  onTap: () async {
-                    // fakefile =
-                    // "ชื่อเพลง\nผู้ประพันธ์\n \n-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-\n \n                                ";
-                    // setState(() {
-                    //   readfile(fakefile);
-                    // });
-                  },
-                  text: const Text('บรรทัดเดี่ยว'),
-                ),
-                MenuButton(
-                  onTap: () async {
-                    // fakefile =
-                    // "ชื่อเพลง\nผู้ประพันธ์\n \n-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-\n-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-\n                                ";
-                    // setState(() {
-                    //   readfile(fakefile);
-                    // });
-                    // intru = 2;
-                  },
-                  text: const Text('บรรทัดคู่'),
-                ),
-              ],
-            ),
-          ),
-          MenuButton(
-            onTap: () async {
-              // strings.clear();
-              // final result =
-              // await FilePicker.platform.pickFiles(); //เปิดfider
-              // if (result != null) {
-              //   final file = result.files.first; //เก็บfile path
-              //   filePath =
-              //       p.join(Directory.current.path, file.path); //อ่านไฟล์
-              //   File file2 = File(filePath);
-              //   var fileContent = file2.readAsStringSync(); //ทําให้เป็นstring
-              //   print(fileContent);
-              //   setState(() {
-              //     readfile(fileContent);
-              //   });
-              // }
-            },
-            text: const Text('Open File'),
-          ),
+          // MenuButton(
+          //   onTap: () async {
+          //
+          //   },
+          //   text: const Text('Save as'),
+          //   icon: const Icon(Icons.cloud_download_outlined),
+          //   //shortcutText: 'Cmd+Shift+S',
+          // ),
+
+          // MenuButton(
+          //   text: const Text('New Project'),
+          //   submenu: SubMenu(
+          //     menuItems: [
+          //       MenuButton(
+          //         onTap: () async {
+          //           // fakefile =
+          //           // "ชื่อเพลง\nผู้ประพันธ์\n \n-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-\n \n                                ";
+          //           // setState(() {
+          //           //   readfile(fakefile);
+          //           // });
+          //         },
+          //         text: const Text('บรรทัดเดี่ยว'),
+          //       ),
+          //       MenuButton(
+          //         onTap: () async {
+          //           // fakefile =
+          //           // "ชื่อเพลง\nผู้ประพันธ์\n \n-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-\n-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-,-\n                                ";
+          //           // setState(() {
+          //           //   readfile(fakefile);
+          //           // });
+          //           // intru = 2;
+          //         },
+          //         text: const Text('บรรทัดคู่'),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          // MenuButton(
+          //   onTap: () async {
+          //     // strings.clear();
+          //     // final result =
+          //     // await FilePicker.platform.pickFiles(); //เปิดfider
+          //     // if (result != null) {
+          //     //   final file = result.files.first; //เก็บfile path
+          //     //   filePath =
+          //     //       p.join(Directory.current.path, file.path); //อ่านไฟล์
+          //     //   File file2 = File(filePath);
+          //     //   var fileContent = file2.readAsStringSync(); //ทําให้เป็นstring
+          //     //   print(fileContent);
+          //     //   setState(() {
+          //     //     readfile(fileContent);
+          //     //   });
+          //     // }
+          //   },
+          //   text: const Text('Open File'),
+          // ),
           const MenuDivider(),
           MenuButton(
             text: const Text('Export'),
@@ -185,12 +216,21 @@ List<BarButton> menuBarButtons() {
           ),
           MenuButton(
             onTap: () {
-           //   SystemNavigator.pop();
+              deleteproject(referenceinfo);
+              //   SystemNavigator.pop();
             },
-            shortcutText: 'Cmd+Q',
-            text: const Text('Exit'),
-            icon: const Icon(Icons.exit_to_app),
+            //shortcutText: 'Cmd+Q',
+            text: const Text('Delete'),
+            icon: const Icon(Icons.delete_outline),
           ),
+          // MenuButton(
+          //   onTap: () {
+          //  //   SystemNavigator.pop();
+          //   },
+          //   shortcutText: 'Cmd+Q',
+          //   text: const Text('Exit'),
+          //   icon: const Icon(Icons.exit_to_app),
+          // ),
         ],
       ),
     ),

@@ -17,14 +17,33 @@ void newproject() {
   composer = "ผู้ประพันธ์";
   labelarr.clear();
   kroarr.clear();
+
+  //สร้าง arrays3ชั้น
+  //labelarr[part][position][kromai]
+
+  // var kromaiarr = ["-"," "];
+  // var positionarr = [];
+  //
+  // for (int i = 0; i < 32; i++) {
+  //   positionarr.add(kromaiarr); // Add the current index to the array
+  // }
+  //
+  // for (int i = 0; i < 1; i++) {//เปลี่ยนถ้ามีบรรทัดมากขึ้น
+  //   labelarr.add(positionarr); // Add the current index to the array
+  // }
+  //
+  // print(labelarr[0][0][0]);
+  //add();//นําไปเก็บบนfirebase
+
   for (int i = 0; i < 32; i++) {
     labelarr.add("-"); // Add the current index to the array
-    kroarr.add(" ");
+    kroarr.add("");
   }
-  //add();//นําไปเก็บบนfirebase
+
   pagepaper.clear();
   PaperManager.addPaper(pagepaper); //สร้างหน้ากระดาษ
   //savetofirebase();
+
 }
 
 void saveasproject() async {
@@ -74,7 +93,7 @@ void deleteproject(path) async {
   }
 }
 
-void saveDocument(path, Map<String, dynamic> data) async {
+void saveproject(path, Map<String, dynamic> data) async {
   // Construct the document reference using the provided path
   DocumentReference documentReference = FirebaseFirestore.instance.doc(path);
 

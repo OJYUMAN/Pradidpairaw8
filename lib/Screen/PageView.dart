@@ -6,6 +6,7 @@ import 'PaperView.dart';
 import 'FileView.dart';
 import '../variable.dart';
 import '../main.dart';
+import '../UiFunc.dart';
 
 class PageViewContainer extends StatefulWidget {
   @override
@@ -46,10 +47,20 @@ class _FloatingContainerState extends State<PageViewContainer> {
               },
               child: Transform.scale(
                 scale: scale,
-                child: Column(
-                  children: [
-                    ...pagepaper,
-                  ],
+                child: GestureDetector(
+                  onTap: () {//เมื่อกดที่ว่างๆบนกระดาษให้ปุ่มกลับมาไม่มีสี
+                    ppcolor = Color.fromRGBO(255, 228, 103, 0.0);
+                    ppcount = 0.0;
+                    newcursor();
+                    pagepaper.clear();
+                    PaperManager.addPaper(pagepaper); //สร้างหน้ากระดาษ
+                    refresh();
+                  },
+                  child: Column(
+                    children: [
+                      ...pagepaper,
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -62,35 +73,7 @@ class _FloatingContainerState extends State<PageViewContainer> {
           child: Row(
             children: [
               FloatingActionButton(
-                onPressed: () {
-                  setState(() {
-                    Map<String, dynamic> data = {
-                      'title': title,
-                      'instrument': instrument,
-                      'composer': composer,
-                      'labelarr': labelarr,
-                      'kroarr': kroarr,
-                      'created': DateTime.now(),
-                      // Add other fields as needed
-                    };
-
-                    //
-                    saveDocument(referenceinfo, data);
-                  });
-                },
-                child: Icon(Icons.save),
-              ),
-              FloatingActionButton(
-                onPressed: () {
-                  setState(() {
-                    // delete();
-                    print(referenceinfo);
-                    deleteproject(referenceinfo);
-                  });
-                },
-                child: Icon(Icons.delete),
-              ),
-              FloatingActionButton(
+                backgroundColor: Color.fromARGB(255, 169, 143, 127),
                 onPressed: () {
                   setState(() {
                     for (int i = 0; i < 32; i++) {
@@ -107,18 +90,31 @@ class _FloatingContainerState extends State<PageViewContainer> {
                 },
                 child: Icon(Icons.add),
               ),
-              FloatingActionButton(
-                onPressed: () {
-                  setState(() {
-                    saveasproject();
-
-                    //PaperManager.addPaper(pagepaper);
-                  });
-                },
-                child: Icon(Icons.save_as),
-              ),
               SizedBox(width: 8),
               FloatingActionButton(
+                backgroundColor: Color.fromARGB(255, 169, 143, 127),
+                onPressed: () {
+                  ppcount -= 1;
+                  newcursor();
+                  refreshui();
+
+                },
+                child: Icon(Icons.arrow_back_ios),
+              ),
+              FloatingActionButton(
+                backgroundColor: Color.fromARGB(255, 169, 143, 127),
+                onPressed: () {
+                  ppcount += 1;
+                  newcursor();
+                  pagepaper.clear();
+                  PaperManager.addPaper(pagepaper);
+                  refresh();
+
+                },
+                child: Icon(Icons.arrow_forward_ios),
+              ),
+              FloatingActionButton(
+                backgroundColor: Color.fromARGB(255, 169, 143, 127),
                 onPressed: () {
                   setState(() {
                     scale -= 0.1; // Decrease scale by 0.1
@@ -128,6 +124,7 @@ class _FloatingContainerState extends State<PageViewContainer> {
               ),
               SizedBox(width: 8),
               FloatingActionButton(
+                backgroundColor: Color.fromARGB(255, 169, 143, 127),
                 onPressed: () {
                   setState(() {
                     scale += 0.1; // Increase scale by 0.1
@@ -155,7 +152,7 @@ class _FloatingContainerState extends State<PageViewContainer> {
                 },
                 child: const Icon(
                   Icons.piano,
-                  color: Colors.black,
+                  color: Colors.white,
                 ),
               ),
             ],
