@@ -9,7 +9,6 @@ import '../main.dart';
 import '../UiFunc.dart';
 import 'dart:html' as html;
 
-import 'playsound.dart';
 
 class PageViewContainer extends StatefulWidget {
   @override

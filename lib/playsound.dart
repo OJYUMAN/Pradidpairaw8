@@ -7,7 +7,17 @@ import '../variable.dart';
 import 'dart:html' as html;
 
 
-
+void simulator(int noteIndex) async {
+  //play sound without editing
+  final audioPlayer3 = AudioPlayer();
+  if (intru == 2) {
+    final aj = duoNotes[noteIndex];
+    audioPlayer3.play(AssetSource("Sound/$selectedInstrument2/$aj"));
+  } else {
+    final aj = piano[noteIndex];
+    audioPlayer3.play(AssetSource("notes/$aj"));
+  }
+}
 
 Stopwatch stopwatch = Stopwatch();
 late Timer _timer;
@@ -15,7 +25,7 @@ var MT = 250; //1000milisec/4
 
 void playsound(){
   stopwatch.start();
-    _timer = Timer.periodic(Duration(milliseconds: MT), (timer) {
+  _timer = Timer.periodic(Duration(milliseconds: MT), (timer) {
     ppcolor = Color.fromRGBO(103, 164, 255, 0.7019607843137254);
     newcursor();
     refreshui();
@@ -177,10 +187,3 @@ void playNote(String note) async {
 //   audio.play();
 // }
 //
-
-
-
-
-
-
-
