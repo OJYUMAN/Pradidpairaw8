@@ -9,7 +9,7 @@ import 'PageView.dart';
 import '../variable.dart';
 import '../Keyboard.dart';
 import 'package:async/async.dart';
-
+import 'dart:html' as html;
 
 void refresh() {
   runApp(MyApp());

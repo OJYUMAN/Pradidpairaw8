@@ -7,7 +7,7 @@ import 'FileView.dart';
 import '../variable.dart';
 import '../main.dart';
 import '../UiFunc.dart';
-
+import 'dart:html' as html;
 
 
 class PageViewContainer extends StatefulWidget {
