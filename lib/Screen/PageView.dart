@@ -7,6 +7,9 @@ import 'FileView.dart';
 import '../variable.dart';
 import '../main.dart';
 import '../UiFunc.dart';
+import 'dart:html' as html;
+
+import 'playsound.dart';
 
 class PageViewContainer extends StatefulWidget {
   @override
@@ -155,6 +158,13 @@ class _FloatingContainerState extends State<PageViewContainer> {
                   color: Colors.white,
                 ),
               ),
+              FloatingActionButton(
+                backgroundColor: Color.fromARGB(255, 169, 143, 127),
+                onPressed: () {
+
+                },
+                child: Icon(Icons.zoom_in),
+              ),
             ],
           ),
         ),
@@ -162,3 +172,5 @@ class _FloatingContainerState extends State<PageViewContainer> {
     );
   }
 }
+
+

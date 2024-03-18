@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import '../FirebaseAction.dart';
 import '../SignWithGoogle.dart';
 import '../UiFunc.dart';
+import '../not run/preload.dart';
 import 'FileView.dart';
 import 'PageView.dart';
 import '../variable.dart';
 import '../Keyboard.dart';
 import 'playsound.dart';
 import 'package:async/async.dart';
+import 'dart:html' as html;
+
 void refresh() {
   runApp(MyApp());
 }
@@ -249,6 +252,7 @@ class MyApp extends StatelessWidget {
                                 IconButton(
                                   icon: Icon(Icons.add),
                                   onPressed: () {
+
                                     // setState(() {
                                     //   Tempo += 1;
                                     //   MT -= 1;

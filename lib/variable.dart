@@ -169,6 +169,29 @@ final List<String> ekNotes = [
       'F2.mp3',
       'G3.mp3',
 ];
+
+
+final List<String> piano = [
+  'c3.mp3',
+  'd3.mp3',
+  'e3.mp3',
+  'f3.mp3',
+  'g3.mp3',
+  'a3.mp3',
+  'b3.mp3',
+  'c4.mp3',
+  'd4.mp3',
+  'e4.mp3',
+  'f4.mp3',
+  'g4.mp3',
+  'a4.mp3',
+  'b4.mp3',
+  'c4.mp3',
+
+
+];
+
+
 List<bool> isSelected = [true, false];
 
 bool isYellow = true;

@@ -8,7 +8,7 @@ void simulator(int noteIndex) async {
     final aj = duoNotes[noteIndex];
     audioPlayer3.play(AssetSource("Sound/$selectedInstrument2/$aj"));
   } else {
-    final aj = ekNotes[noteIndex];
-    audioPlayer3.play(AssetSource("Sound/$selectedInstrument2/$aj"));
+    final aj = piano[noteIndex];
+    audioPlayer3.play(AssetSource("notes/$aj"));
   }
 }
