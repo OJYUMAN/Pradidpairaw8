@@ -221,7 +221,7 @@ keyboard(a) {
                             //     edit();
                             //     // datatowidget();
                             //   }
-                            //   simulator(i);
+                              simulator(i);
                             // });
                           },
                         ),
