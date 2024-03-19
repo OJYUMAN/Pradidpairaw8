@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'Screen/ProjectView.dart';
 import 'SignWithGoogle.dart';
+import 'dart:js' as js;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +18,13 @@ void main() async {
           appId: "1:200891038132:web:719321f06dd52045451ae1",
           measurementId: "G-610D7GK2QW")
   );
+
   runApp(const MyApp1());
+  // for (String url in audioUrls) {
+  //   js.context.callMethod('loadAudio', [url]);
+  // }
+  // // Load and store audio files in web browser's memory
+  // js.context.callMethod('loadAudio', [audioUrls]);
 }
 
 class MyApp1 extends StatelessWidget {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../FirebaseAction.dart';
 import '../SignWithGoogle.dart';
 import '../UiFunc.dart';
+import '../main.dart';
 import '../not run/preload.dart';
 import '../playsound.dart';
 import 'FileView.dart';
@@ -10,8 +11,12 @@ import '../variable.dart';
 import '../Keyboard.dart';
 import 'package:async/async.dart';
 import 'dart:html' as html;
+import 'dart:js' as js;
+
+
 
 void refresh() {
+
   runApp(MyApp());
 }
 
@@ -158,6 +163,9 @@ class MyApp extends StatelessWidget {
                           direction:
                           vertical ? Axis.vertical : Axis.horizontal,
                           onPressed: (int index) {
+                            for (String url in audioUrls) {
+                              js.context.callMethod('loadAudio', [url]);
+                            }
                               selectedVegetables[index] =
                               !selectedVegetables[
                               index]; //สําหรับควบคุมui
@@ -166,12 +174,9 @@ class MyApp extends StatelessWidget {
                                 if (play == true) {
                                   play = false;
                                   stop();
-
                                 } else {
                                   play = true;
                                   playsound();
-
-
                                 }
                               }
                               if (index == 1) {
@@ -182,15 +187,11 @@ class MyApp extends StatelessWidget {
                                 play = false;
                                 stop();
                                 ppcount = 0;
-
                                 //_resetStopwatch();
                                 newcursor();
-
                                 refreshui();
-
                               }
                               refresh();
-
                           },
                           borderRadius:
                           const BorderRadius.all(Radius.circular(8)),

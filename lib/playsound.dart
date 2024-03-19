@@ -5,19 +5,46 @@ import '../FirebaseAction.dart';
 import '../UiFunc.dart';
 import '../variable.dart';
 import 'dart:html' as html;
+import 'dart:js' as js;
+
+import 'main.dart';
+
+
+// void simulator(int noteIndex) async {
+//   //play sound without editing
+//   final audioPlayer3 = AudioPlayer();
+//   if (intru == 2) {
+//     final aj = duoNotes[noteIndex];
+//     audioPlayer3.play(AssetSource("Sound/$selectedInstrument2/$aj"));
+//   } else {
+//     final aj = piano[noteIndex];
+//     audioPlayer3.play(AssetSource("notes/$aj"));
+//   }
+// }
+
+final List<String> audioUrls = [
+  'assets/assets/Sound/Ranatek/G0.mp3',
+  'assets/assets/Sound/Ranatek/A0.mp3',
+  'assets/assets/Sound/Ranatek/B0.mp3',
+  'assets/assets/Sound/Ranatek/C.mp3',
+  'assets/assets/Sound/Ranatek/D.mp3',
+  'assets/assets/Sound/Ranatek/E.mp3',
+  'assets/assets/Sound/Ranatek/F.mp3',
+  'assets/assets/Sound/Ranatek/Ghh.mp3',
+  'assets/assets/Sound/Ranatek/A.mp3',
+  'assets/assets/Sound/Ranatek/B.mp3',
+  'assets/assets/Sound/Ranatek/C2.mp3',
+  'assets/assets/Sound/Ranatek/D2.mp3',
+  'assets/assets/Sound/Ranatek/E2.mp3',
+  'assets/assets/Sound/Ranatek/F2.mp3',
+  'assets/assets/Sound/Ranatek/G3.mp3',
+];
 
 
 void simulator(int noteIndex) async {
-  //play sound without editing
-  final audioPlayer3 = AudioPlayer();
-  if (intru == 2) {
-    final aj = duoNotes[noteIndex];
-    audioPlayer3.play(AssetSource("Sound/$selectedInstrument2/$aj"));
-  } else {
-    final aj = piano[noteIndex];
-    audioPlayer3.play(AssetSource("notes/$aj"));
-  }
+  js.context.callMethod('playAudio', [audioUrls[noteIndex]]);
 }
+
 
 Stopwatch stopwatch = Stopwatch();
 late Timer _timer;
@@ -27,11 +54,10 @@ void playsound(){
   stopwatch.start();
   _timer = Timer.periodic(Duration(milliseconds: MT), (timer) {
     ppcolor = Color.fromRGBO(103, 164, 255, 0.7019607843137254);
+    playNoteJs(labelarr[ppcount.toInt()]);
     newcursor();
     refreshui();
-
-    playNote(labelarr[ppcount.toInt()]);
-    //invertnotetonumbernew(labelarr[ppcount.toInt()]);
+    //playNote(labelarr[ppcount.toInt()]);
     ppcount += 1; //1
   });
 }
@@ -44,50 +70,47 @@ void stop() {
   _timer.cancel();
 }
 
-// void invertnotetonumbernew(x) {
-//   //ทําแบบใหม่รวมโน้ตของทุ้มและเอก
-//   var i = 0;
-//
-//   if (x == 'มฺ') {
-//     i = 0;
-//   } else if (x == 'ฟฺ') {
-//     i = 1;
-//   } else if (x == 'ซฺ') {
-//     i = 2;
-//   } else if (x == 'ลฺ') {
-//     i = 3;
-//   } else if (x == 'ทฺ') {
-//     i = 4;
-//   } else if (x == 'ด') {
-//     audioPlayer.play(AssetSource('notes/c3.mp3'));
-//   } else if (x == 'ร') {
-//     audioPlayer2.play(AssetSource('notes/d3.mp3'));
-//   } else if (x == 'ม') {
-//     audioPlayer3.play(AssetSource('notes/e3.mp3'));
-//   } else if (x == 'ฟ') {
-//     audioPlayer4.play(AssetSource('notes/f3.mp3'));
-//   } else if (x == 'ซ') {
-//     audioPlayer5.play(AssetSource('notes/g3.mp3'));
-//   } else if (x == 'ล') {
-//     audioPlayer6.play(AssetSource('notes/a3.mp3'));
-//   } else if (x == 'ท') {
-//     audioPlayer7.play(AssetSource('notes/b3.mp3'));
-//   } else if (x == 'ดํ') {
-//     audioPlayer8.play(AssetSource('notes/c3.mp3'));
-//   } else if (x == 'รํ') {
-//     audioPlayer9.play(AssetSource('notes/d3.mp3'));
-//   } else if (x == 'มํ') {
-//     audioPlayer10.play(AssetSource('notes/e3.mp3'));
-//   } else if (x == 'ฟํ') {
-//     i = 15;
-//   } else if (x == 'ซํ') {
-//     i = 16;
-//   } else {
-//     i = -1; // หรือค่าเริ่มต้นที่คุณต้องการในกรณีอื่นๆ
-//   }
-//   //playRanatek(i);
-//
-// }
+void playNoteJs(x) {
+  if (x == 'มฺ') {
+
+  } else if (x == 'ฟฺ') {
+
+  } else if (x == 'ซฺ') {
+    js.context.callMethod('playAudio', [audioUrls[0]]);
+  } else if (x == 'ลฺ') {
+    js.context.callMethod('playAudio', [audioUrls[1]]);
+  } else if (x == 'ทฺ') {
+    js.context.callMethod('playAudio', [audioUrls[2]]);
+  } else if (x == 'ด') {
+    js.context.callMethod('playAudio', [audioUrls[3]]);
+  } else if (x == 'ร') {
+    js.context.callMethod('playAudio', [audioUrls[4]]);
+  } else if (x == 'ม') {
+    js.context.callMethod('playAudio', [audioUrls[5]]);
+  } else if (x == 'ฟ') {
+    js.context.callMethod('playAudio', [audioUrls[6]]);
+  } else if (x == 'ซ') {
+    js.context.callMethod('playAudio', [audioUrls[7]]);
+  } else if (x == 'ล') {
+    js.context.callMethod('playAudio', [audioUrls[8]]);
+  } else if (x == 'ท') {
+    js.context.callMethod('playAudio', [audioUrls[9]]);
+  } else if (x == 'ดํ') {
+    js.context.callMethod('playAudio', [audioUrls[10]]);
+  } else if (x == 'รํ') {
+    js.context.callMethod('playAudio', [audioUrls[10]]);
+  } else if (x == 'มํ') {
+    js.context.callMethod('playAudio', [audioUrls[12]]);
+  } else if (x == 'ฟํ') {
+    js.context.callMethod('playAudio', [audioUrls[13]]);
+  } else if (x == 'ซํ') {
+    js.context.callMethod('playAudio', [audioUrls[14]]);
+  } else {
+  }
+  //v(i);
+  //playRanatek(i);
+
+}
 
 // void playRanatek(int noteIndex) async {
 //
@@ -148,6 +171,17 @@ void playNote(String note) async {
   }
 }
 
+
+
+
+// void playNoteJs(note)  {
+//   print(note);
+//   if(note == -1){
+//
+//   }else{
+//     js.context.callMethod('playAudio', [audioUrls[note]]);
+//   }
+// }
 // void playNote(String note) {
 //   String? audioFile = noteMap[note.toLowerCase()];
 //   if (audioFile != null) {

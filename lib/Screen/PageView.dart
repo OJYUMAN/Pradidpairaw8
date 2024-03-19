@@ -8,6 +8,7 @@ import '../variable.dart';
 import '../main.dart';
 import '../UiFunc.dart';
 import 'dart:html' as html;
+import 'dart:js' as js;
 
 
 class PageViewContainer extends StatefulWidget {
@@ -16,6 +17,8 @@ class PageViewContainer extends StatefulWidget {
 }
 
 class _FloatingContainerState extends State<PageViewContainer> {
+
+
   double scale = 1.0;
   double _dx = 0.0;
   double _dy = 0.0;
