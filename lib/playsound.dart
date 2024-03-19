@@ -55,6 +55,7 @@ void playsound(){
   _timer = Timer.periodic(Duration(milliseconds: MT), (timer) {
     ppcolor = Color.fromRGBO(103, 164, 255, 0.7019607843137254);
     playNoteJs(labelarr[ppcount.toInt()]);
+    print(ppcount);
     newcursor();
     refreshui();
     //playNote(labelarr[ppcount.toInt()]);
